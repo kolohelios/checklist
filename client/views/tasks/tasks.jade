@@ -17,4 +17,25 @@ h3 Tasks
           option low
       .form-group
         button.btn.btn-default.form-control(type='submit', ng-click='addTask(task)') Submit
-  .col-xs-8
+  .row
+    .col-xs-12
+      table.table.table-striped
+        thead
+          tr
+            th Edit
+            th Delete
+            th Title
+            th Due Date
+            th Priority
+            th Complete
+            th Created At
+        tbody
+          tr(ng-repeat='task in afTasks')
+            td: button(ng-click='editTask(task)') Edit
+            td: button(ng-click='deleteTask(task)') Delete
+            td {{task.title}}
+            td {{task.dueDate | date: 'dd MMM yyyy'}}
+            td {{task.priority}}
+            td {{task.isComplete}}
+            td {{task.createdAt}}
+          

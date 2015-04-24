@@ -3,7 +3,7 @@
 angular.module('checklist')
 .controller('TasksCtrl', ['$scope', 'Task', '$window', function($scope, Task, $window){
 
-  Task.init();
+  $scope.afTasks = Task.init();
 
   console.info('I am a task controller');
 
@@ -18,6 +18,12 @@ angular.module('checklist')
     Task.add(o)
     .then(function(data){
       console.info('data', data);
+      $scope.task = {};
     });
   };
+
+  $scope.deleteTask = function(task){
+    Task.destroy(task);
+  };
+
 }]);
