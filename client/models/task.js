@@ -22,5 +22,9 @@ angular.module('checklist')
     return afTasks.$remove(task);
   }
 
-  return {add: add, init: init, destroy: destroy};
+  function save(task){
+    return afTasks.$save(task);
+  }
+
+  return {add: add, init: init, destroy: destroy, save: save};
 }]);

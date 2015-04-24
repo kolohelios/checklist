@@ -7,7 +7,7 @@ h3 Tasks
         label(for='title') To-Do
         input#title.form-control(type='text', name='title', ng-model='task.title')
       .form-group
-        label(for='dueDate') Password
+        label(for='dueDate') Due Date
         input#duedate.form-control(type='date', name='dueDate', ng-model='task.dueDate')
       .form-group
         label(for='priority') Priority
@@ -16,7 +16,8 @@ h3 Tasks
           option medium
           option low
       .form-group
-        button.btn.btn-default.form-control(type='submit', ng-click='addTask(task)') Submit
+        button.btn.btn-default.form-control(type='submit', ng-click='addTask(task)', ng-hide='editingTask') Add Task
+        button.btn.btn-default.form-control(type='submit', ng-click='saveTask(task)', ng-show='editingTask') Save Task
   .row
     .col-xs-12
       table.table.table-striped
@@ -28,7 +29,7 @@ h3 Tasks
             th Due Date
             th Priority
             th Complete
-            th Created At
+            th Created
         tbody
           tr(ng-repeat='task in afTasks')
             td: button(ng-click='editTask(task)') Edit
@@ -36,6 +37,6 @@ h3 Tasks
             td {{task.title}}
             td {{task.dueDate | date: 'dd MMM yyyy'}}
             td {{task.priority}}
-            td {{task.isComplete}}
-            td {{task.createdAt}}
+            td: input(type='checkbox', ng-model='task.isComplete', ng-click='saveTask(task)')
+            td {{task.createdAt | date: 'dd MMM yyyy'}}
           
