@@ -1,16 +1,23 @@
 'use strict';
 
 angular.module('checklist')
-.controller('UsersCtrl', ['$scope', 'User', function($scope, User){
-  console.info('UsersCtrl is loaded');
+.controller('UsersCtrl', ['$scope', 'User', '$state', function($scope, User, $state){
+  $scope.name = $state.current.name;
 
   $scope.submit = function(user){
-    User.register(user)
-    .then(function(data){
-      console.info(data);
-    })
-    .catch(function(err){
-      console.error(err);
-    });
+    if($scope.name === 'register'){
+      User.register(user)
+      .then(function(){
+        $state.go('login');
+      })
+      .catch(function(err){
+        console.error(err);
+      });
+    } else{
+      User.login(user)
+      .catch(function(err){
+        console.error(err);
+      });
+    }
   };
 }]);
