@@ -1,7 +1,7 @@
 h3 Tasks
 
 .row
-  .col-xs-4
+  .col-xs-4.col-xs-offset-4
     form(name='taskForm')
       .form-group
         label(for='title') To-Do
@@ -16,5 +16,5 @@ h3 Tasks
           option medium
           option low
       .form-group
-        button.btn.btn-default(type='submit', ng-click='addTask(task)') Submit
+        button.btn.btn-default.form-control(type='submit', ng-click='addTask(task)') Submit
   .col-xs-8

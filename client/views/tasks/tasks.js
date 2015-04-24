@@ -3,6 +3,10 @@
 angular.module('checklist')
 .controller('TasksCtrl', ['$scope', 'Task', '$window', function($scope, Task, $window){
 
+  Task.init();
+
+  console.info('I am a task controller');
+
   $scope.addTask = function(task){
     var o = {
       title: task.title,
@@ -11,8 +15,6 @@ angular.module('checklist')
       isComplete: false,
       createdAt: $window.Firebase.ServerValue.TIMESTAMP
     };
-    var date  = task.dueDate.getTime();
-    task.dueDate = date;
     Task.add(o)
     .then(function(data){
       console.info('data', data);
