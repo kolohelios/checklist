@@ -6,7 +6,6 @@ angular.module('checklist')
   $scope.afTasks = Task.init();
   $scope.editingTask = false;
 
-  console.info('I am a task controller');
 
   $scope.addTask = function(task){
     var o = {
@@ -36,10 +35,13 @@ angular.module('checklist')
   };
 
   $scope.editTask = function(task){
-    var o = task;
-    o.dueDate = new Date(task.dueDate);
-    $scope.task = o;
+    task.dueDate = new Date(task.dueDate);
+    $scope.task = task;
     $scope.editingTask = true;
   };
 
+  $scope.sort = function(sortString){
+    var modifier = ($scope.taskOrder === sortString) ? '-' : '';
+    $scope.taskOrder = modifier + sortString;
+  };
 }]);

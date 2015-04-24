@@ -16,8 +16,8 @@ h3 Tasks
           option medium
           option low
       .form-group
-        button.btn.btn-default.form-control(type='submit', ng-click='addTask(task)', ng-hide='editingTask') Add Task
-        button.btn.btn-default.form-control(type='submit', ng-click='saveTask(task)', ng-show='editingTask') Save Task
+        button.btn.btn-primary.form-control(type='submit', ng-click='addTask(task)', ng-hide='editingTask') Add Task
+        button.btn.btn-success.form-control(type='submit', ng-click='saveTask(task)', ng-show='editingTask') Save Task
   .row
     .col-xs-12
       table.table.table-striped
@@ -25,13 +25,13 @@ h3 Tasks
           tr
             th Edit
             th Delete
-            th Title
-            th Due Date
-            th Priority
-            th Complete
-            th Created
+            th(ng-click='sort("title")') Title
+            th(ng-click='sort("dueDate")') Due Date
+            th(ng-click='sort("priority")') Priority
+            th(ng-click='sort("isComplete")') Complete
+            th(ng-click='sort("createdAt")') Created
         tbody
-          tr(ng-repeat='task in afTasks')
+          tr(ng-repeat='task in afTasks | orderBy:taskOrder', ng-class='{completed:task.isComplete}')
             td: button(ng-click='editTask(task)') Edit
             td: button(ng-click='deleteTask(task)') Delete
             td {{task.title}}

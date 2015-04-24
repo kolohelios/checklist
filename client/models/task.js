@@ -6,8 +6,6 @@ angular.module('checklist')
   var fbTasks;
   var afTasks;
 
-  console.info('I am a task model');
-
   function init(){
     fbTasks = $rootScope.fbRoot.child('users/' + $rootScope.activeUser.uid + '/tasks');
     afTasks = $firebaseArray(fbTasks);
